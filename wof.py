@@ -36,7 +36,9 @@ def getRandomCategoryAndPhrase():
 
 # Function to hide letters in the phrase that have not been guessed
 def obscurePhrase(phrase, guessed):
-    return ' '.join('_' if letter not in guessed else letter for letter in phrase)
+    obscured_words = [''.join('_' if letter not in guessed else letter for letter in word) for word in phrase.split()]
+    return ' '.join(obscured_words)
+
 
 # Function to get a consonant guess from the player
 def getGuess():
@@ -120,7 +122,7 @@ def printHelp():
 
 def main():
     # Define the players
-    players = [Player('ChatGPTv4 1'), Player('Google Bert(aka Bard) 2'), Player('LaMMA')]
+    players = [Player('ChatGPTv4 1'), Player('Google Bard 2')]
 
     print('Welcome to Wheel of Fortune!')
 
