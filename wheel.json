@@ -1,0 +1,6 @@
+[
+    {"type": "cash", "value": 500, "text": "$500"},
+    {"type": "cash", "value": 1000, "text": "$1000"},
+    {"type": "bankrupt", "value": 0, "text": "Bankrupt"},
+    {"type": "lose_a_turn", "value": 0, "text": "Lose a Turn"}
+]

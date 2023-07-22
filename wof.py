@@ -1,28 +1,25 @@
+import json
 import random
 
-# Define the wheel and other game components
-WHEEL = [{'type': 'cash', 'value': 500, 'text': '$500'},
-         {'type': 'cash', 'value': 1000, 'text': '$1000'},
-         {'type': 'bankrupt', 'value': 0, 'text': 'Bankrupt'},
-         {'type': 'lose_a_turn', 'value': 0, 'text': 'Lose a Turn'}]
+# Load the wheel configuration from a JSON file
+with open('wheel.json', 'r') as f:
+    WHEEL = json.load(f)
 
-CATEGORIES = ['Phrase', 'Person', 'Place', 'Thing', 'Title']
-PHRASES = {'Phrase': ['A CHIP OFF THE OLD BLOCK', 'A FISH OUT OF WATER', 'A LEOPARD CANNOT CHANGE ITS SPOTS'],
-           'Person': ['JOHN DOE', 'JANE DOE'],
-           'Place': ['NEW YORK', 'PARIS'],
-           'Thing': ['WHEEL OF FORTUNE', 'DICTIONARY'],
-           'Title': ['THE GREAT GATSBY', 'BRAVE NEW WORLD']}
+# Load the categories and phrases from a JSON file
+with open('phrases.json', 'r') as f:
+    PHRASES = json.load(f)
+
+CATEGORIES = list(PHRASES.keys())
+
 VOWELS = 'AEIOU'
 CONSONANTS = 'BCDFGHJKLMNPQRSTVWXYZ'
 VOWEL_COST = 250
 
-# The player class
 class Player:
     def __init__(self, name):
         self.name = name
         self.score = 0
 
-# Functions for the game logic
 def spinWheel():
     return random.choice(WHEEL)
 
@@ -51,17 +48,13 @@ def buyVowel(player):
         else:
             print("Invalid input. Please enter a vowel.")
 
-# The main game loop
 def main():
-    # Create the players
     players = [Player('ChatGPTv4 1'), Player('Google Bert(aka Bard) 2'), Player('LaMMA')]
-
-    # Start the game
     print('Welcome to Wheel of Fortune!')
     category, phrase = getRandomCategoryAndPhrase()
     guessed = set()
+    print(f"The category is: {category}")
 
-    # Game rounds
     playerIndex = 0
     while True:
         player = players[playerIndex]
