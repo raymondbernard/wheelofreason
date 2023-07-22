@@ -2,5 +2,13 @@
     {"type": "cash", "value": 500, "text": "$500"},
     {"type": "cash", "value": 1000, "text": "$1000"},
     {"type": "bankrupt", "value": 0, "text": "Bankrupt"},
-    {"type": "lose_a_turn", "value": 0, "text": "Lose a Turn"}
+    {"type": "lose_a_turn", "value": 0, "text": "Lose a Turn"},
+    {"type": "cash", "value": 200, "text": "$200"},
+    {"type": "cash", "value": 400, "text": "$400"},
+    {"type": "cash", "value": 700, "text": "$700"},
+    {"type": "cash", "value": 900, "text": "$900"},
+    {"type": "cash", "value": 300, "text": "$300"},
+    {"type": "cash", "value": 600, "text": "$600"},
+    {"type": "cash", "value": 800, "text": "$800"},
+    {"type": "cash", "value": 2500, "text": "$2500"}
 ]

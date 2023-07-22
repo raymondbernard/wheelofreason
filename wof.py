@@ -1,19 +1,22 @@
 import json
 import random
 
-# Load the wheel configuration from a JSON file
+# Load the wheel configuration, phrases and questions from JSON files
 with open('wheel.json', 'r') as f:
     WHEEL = json.load(f)
 
-# Load the categories and phrases from a JSON file
 with open('phrases.json', 'r') as f:
     PHRASES = json.load(f)
+
+with open('answers.json', 'r') as f:
+    QUESTIONS = json.load(f)
 
 CATEGORIES = list(PHRASES.keys())
 
 VOWELS = 'AEIOU'
 CONSONANTS = 'BCDFGHJKLMNPQRSTVWXYZ'
 VOWEL_COST = 250
+TRIVIA_BONUS = 500  # Define a bonus amount for correct trivia answer
 
 class Player:
     def __init__(self, name):
@@ -27,6 +30,11 @@ def getRandomCategoryAndPhrase():
     category = random.choice(CATEGORIES)
     phrase = random.choice(PHRASES[category])
     return category, phrase
+
+def getRandomQuestionAndAnswer():
+    question = random.choice(list(QUESTIONS.keys()))
+    answer = QUESTIONS[question]
+    return question, answer
 
 def obscurePhrase(phrase, guessed):
     return ''.join('_ ' if letter not in guessed else letter for letter in phrase)
@@ -48,6 +56,16 @@ def buyVowel(player):
         else:
             print("Invalid input. Please enter a vowel.")
 
+def answerTrivia(player):
+    question, answer = getRandomQuestionAndAnswer()
+    print(f"Trivia: {question}")
+    user_answer = input("Your answer: ")
+    if user_answer.lower() == answer.lower():
+        print("Congratulations! That's the correct answer. You get bonus points!")
+        player.score += TRIVIA_BONUS
+    else:
+        print(f"Sorry, the correct answer is {answer}.")
+
 def main():
     players = [Player('ChatGPTv4 1'), Player('Google Bert(aka Bard) 2'), Player('LaMMA')]
     print('Welcome to Wheel of Fortune!')
@@ -61,7 +79,7 @@ def main():
         print(f"It's {player.name}'s turn. You have {player.score} points.")
         print(obscurePhrase(phrase, guessed))
 
-        action = input("What do you want to do? (1- Spin the wheel, 2- Buy a vowel, 3- Solve the puzzle): ")
+        action = input("What do you want to do? (1- Spin the wheel, 2- Buy a vowel, 3- Solve the puzzle, 4- Answer a trivia question for bonus points): ")
         if action == '1':
             spin = spinWheel()
             print("You spun: ", spin['text'])
@@ -94,6 +112,8 @@ def main():
                 break
             else:
                 print("Sorry, that's not correct.")
+        elif action == '4':
+            answerTrivia(player)
 
         playerIndex = (playerIndex + 1) % len(players)
 
