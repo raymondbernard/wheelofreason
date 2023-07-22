@@ -1,3 +1,6 @@
+# Clone the repository
+!git clone https://github.com/raymondbernard/WheelOfFortune.git
+
 import json
 import random
 import os
@@ -5,11 +8,11 @@ from datetime import datetime
 import atexit
 
 # Load the wheel configuration from a JSON file
-with open('wheel.json', 'r') as f:
+with open('/content/WheelOfFortune/wheel.json', 'r') as f:
     WHEEL = json.load(f)
 
 # Load the categories and phrases from a JSON file
-with open('phrases.json', 'r') as f:
+with open('/content/WheelOfFortune/phrases.json', 'r') as f:
     PHRASES = json.load(f)
 
 CATEGORIES = list(PHRASES.keys())  # Extract the categories from the phrases
