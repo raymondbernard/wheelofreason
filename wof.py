@@ -36,9 +36,7 @@ def getRandomCategoryAndPhrase():
 
 # Function to hide letters in the phrase that have not been guessed
 def obscurePhrase(phrase, guessed):
-    return ' '.join('_' if letter.upper() not in guessed and letter.isalpha() else letter for letter in phrase)
-
-
+    return ' '.join('_' if letter not in guessed else letter for letter in phrase)
 
 # Function to get a consonant guess from the player
 def getGuess():
@@ -138,7 +136,7 @@ def main():
     # Log the chosen category and phrase before game start
     initial_log = {"category": category, "phrase": phrase}
     with open(log_file, 'w') as f:
-        json.dump(initial_log, f)
+        json.dump([initial_log], f)
 
     # Register a function to be executed upon termination
     atexit.register(writeScores, players, log_file)
@@ -166,31 +164,37 @@ def main():
             else:
                 guess = getGuess()
                 if guess in phrase:
-                    player.score += spin['value']
+                    player.score += spin['value'] * phrase.count(guess)
                     guessed.add(guess)
-                    updateGameHistory(player, "spin", f"guessed {guess}", log_file)
-        elif action == '2':
-            if player.score >= VOWEL_COST:
-                vowel = buyVowel(player)
-                if vowel in phrase:
-                    guessed.add(vowel)
-                    updateGameHistory(player, "buyVowel", f"bought {vowel}", log_file)
+                    updateGameHistory(player, "guess", "success", log_file)
+                else:
+                    updateGameHistory(player, "guess", "failure", log_file)
+        elif action == '2' and player.score >= VOWEL_COST:
+            vowel = buyVowel(player)
+            if vowel in phrase:
+                guessed.add(vowel)
+                updateGameHistory(player, "buy_vowel", "success", log_file)
+            else:
+                updateGameHistory(player, "buy_vowel", "failure", log_file)
         elif action == '3':
-            solution = input("What's your solution? ").upper()
-            if solution == phrase.upper():
-                player.score += 500
-                updateGameHistory(player, "solve", "correct", log_file)
-                print(f"Congratulations, {player.name}! You solved the puzzle and won the game!")
+            guess = input("Enter your solution: ")
+            if guess.upper() == phrase.upper():
+                print("Congratulations, you solved the puzzle!")
+                player.score += 500  # Bonus for solving the puzzle
+                updateGameHistory(player, "solve", "success", log_file)
                 break
             else:
                 print("Sorry, that's not correct.")
+                updateGameHistory(player, "solve", "failure", log_file)
         elif action == '4':
             printHelp()
-        else:
-            print("Invalid action. Please enter a number from 1 to 4.")
 
-        # Next player's turn
+        # Switch to the next player
         playerIndex = (playerIndex + 1) % len(players)
 
-if __name__ == '__main__':
+    # Game over, print the winner
+    winner = getWinner(players)
+    print(f"The winner is: {winner.name} with {winner.score} points.")
+
+if __name__ == "__main__":
     main()
