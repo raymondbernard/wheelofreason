@@ -1,22 +1,22 @@
 import json
 import random
+import os
+from datetime import datetime
+import atexit
 
-# Load the wheel configuration, phrases and questions from JSON files
+# Load the wheel configuration from a JSON file
 with open('wheel.json', 'r') as f:
     WHEEL = json.load(f)
 
+# Load the categories and phrases from a JSON file
 with open('phrases.json', 'r') as f:
     PHRASES = json.load(f)
-
-with open('answers.json', 'r') as f:
-    QUESTIONS = json.load(f)
 
 CATEGORIES = list(PHRASES.keys())
 
 VOWELS = 'AEIOU'
 CONSONANTS = 'BCDFGHJKLMNPQRSTVWXYZ'
 VOWEL_COST = 250
-TRIVIA_BONUS = 500  # Define a bonus amount for correct trivia answer
 
 class Player:
     def __init__(self, name):
@@ -30,11 +30,6 @@ def getRandomCategoryAndPhrase():
     category = random.choice(CATEGORIES)
     phrase = random.choice(PHRASES[category])
     return category, phrase
-
-def getRandomQuestionAndAnswer():
-    question = random.choice(list(QUESTIONS.keys()))
-    answer = QUESTIONS[question]
-    return question, answer
 
 def obscurePhrase(phrase, guessed):
     return ''.join('_ ' if letter not in guessed else letter for letter in phrase)
@@ -56,15 +51,36 @@ def buyVowel(player):
         else:
             print("Invalid input. Please enter a vowel.")
 
-def answerTrivia(player):
-    question, answer = getRandomQuestionAndAnswer()
-    print(f"Trivia: {question}")
-    user_answer = input("Your answer: ")
-    if user_answer.lower() == answer.lower():
-        print("Congratulations! That's the correct answer. You get bonus points!")
-        player.score += TRIVIA_BONUS
+def updateGameHistory(player, action, result, log_file):
+    # Load existing history if it exists
+    if os.path.exists(log_file):
+        with open(log_file, 'r') as f:
+            history = json.load(f)
     else:
-        print(f"Sorry, the correct answer is {answer}.")
+        history = []
+
+    # Add the new gameplay event
+    event = {
+        "player": player.name,
+        "action": action,
+        "result": result,
+        "score": player.score
+    }
+    history.append(event)
+
+    # Save the updated game history
+    with open(log_file, 'w') as f:
+        json.dump(history, f)
+
+def getWinner(players):
+    return max(players, key=lambda player: player.score)
+
+def writeScores(players, log_file):
+    scores = {player.name: player.score for player in players}
+    with open(log_file, 'a') as f:
+        f.write("\nCurrent scores:\n")
+        for name, score in scores.items():
+            f.write(f"{name}: {score}\n")
 
 def main():
     players = [Player('ChatGPTv4 1'), Player('Google Bert(aka Bard) 2'), Player('LaMMA')]
@@ -73,18 +89,25 @@ def main():
     guessed = set()
     print(f"The category is: {category}")
 
+    # Generate a timestamp and create a unique log file for this game
+    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    log_file = f"log_{timestamp}.json"
+
+    atexit.register(writeScores, players, log_file)
+
     playerIndex = 0
     while True:
         player = players[playerIndex]
         print(f"It's {player.name}'s turn. You have {player.score} points.")
         print(obscurePhrase(phrase, guessed))
 
-        action = input("What do you want to do? (1- Spin the wheel, 2- Buy a vowel, 3- Solve the puzzle, 4- Answer a trivia question for bonus points): ")
+        action = input("What do you want to do? (1- Spin the wheel, 2- Buy a vowel, 3- Solve the puzzle): ")
         if action == '1':
             spin = spinWheel()
             print("You spun: ", spin['text'])
             if spin['type'] == 'bankrupt':
                 player.score = 0
+                updateGameHistory(player, "spin", "bankrupt", log_file)
             elif spin['type'] == 'lose_a_turn':
                 pass
             else:
@@ -92,7 +115,7 @@ def main():
                 if guess in phrase:
                     player.score += spin['value']
                     guessed.add(guess)
-                    print(f"Good guess! Your score is now {player.score}")
+                    updateGameHistory(player, "spin", f"guessed {guess}", log_file)
                 else:
                     print("Sorry, that letter is not in the phrase.")
         elif action == '2':
@@ -102,18 +125,17 @@ def main():
                 vowel = buyVowel(player)
                 if vowel in phrase:
                     guessed.add(vowel)
-                    print("Good guess!")
+                    updateGameHistory(player, "bought vowel", f"guessed {vowel}", log_file)
                 else:
                     print("Sorry, that letter is not in the phrase.")
         elif action == '3':
             guess = input("What's your solution? ").upper()
             if guess == phrase:
                 print(f"Congratulations, {player.name}! You solved the puzzle!")
+                updateGameHistory(player, "solved", "won", log_file)
                 break
             else:
                 print("Sorry, that's not correct.")
-        elif action == '4':
-            answerTrivia(player)
 
         playerIndex = (playerIndex + 1) % len(players)
 
