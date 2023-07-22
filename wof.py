@@ -36,7 +36,9 @@ def getRandomCategoryAndPhrase():
 
 # Function to hide letters in the phrase that have not been guessed
 def obscurePhrase(phrase, guessed):
-    return ''.join('_ ' if letter not in guessed else letter for letter in phrase)
+    return ' '.join('_' if letter.upper() not in guessed and letter.isalpha() else letter for letter in phrase)
+
+
 
 # Function to get a consonant guess from the player
 def getGuess():
