@@ -122,7 +122,7 @@ def printHelp():
 
 def main():
     # Define the players
-    players = [Player('ChatGPTv4 1'), Player('Google Bard 2')]
+    players = [Player('ChatGPTv4 1'), Player('Google Bard 2'),  Player('Bing AI 2')]
 
     print('Welcome to Wheel of Fortune!')
 
