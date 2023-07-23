@@ -149,6 +149,9 @@ def main():
         print(f"It's {player.name}'s turn. You have {player.score} points.")
         print(obscurePhrase(phrase, guessed))
 
+        # flag to indicate if the current player should continue
+        continue_current_player = False
+
         if player.score >= VOWEL_COST:
             action = input("What do you want to do? (1- Spin the wheel, 2- Buy a vowel, 3- Solve the puzzle, 4- Help): ")
         else:
@@ -169,21 +172,19 @@ def main():
                     player.score += spin['value'] * phrase.count(guess)
                     guessed.add(guess)
                     updateGameHistory(player, "guess", "success", log_file)
+                    continue_current_player = True
                 else:
                     print(f"Sorry, {guess} is not in the puzzle.")
                     updateGameHistory(player, "guess", "failure", log_file)
-                    playerIndex = (playerIndex + 1) % len(players)
-                    continue
         elif action == '2' and player.score >= VOWEL_COST:
             vowel = buyVowel(player)
             if vowel in phrase:
                 guessed.add(vowel)
                 updateGameHistory(player, "buy_vowel", "success", log_file)
+                continue_current_player = True
             else:
                 print(f"Sorry, {vowel} is not in the puzzle.")
                 updateGameHistory(player, "buy_vowel", "failure", log_file)
-                playerIndex = (playerIndex + 1) % len(players)
-                continue
         elif action == '3':
             guess = input("Enter your solution: ")
             if guess.upper() == phrase.upper():
@@ -197,10 +198,9 @@ def main():
         elif action == '4':
             printHelp()
 
-        # Switch to the next player
-        playerIndex = (playerIndex + 1) % len(players)
-
-
+        # Switch to the next player if the current player shouldn't continue
+        if not continue_current_player:
+            playerIndex = (playerIndex + 1) % len(players)
     # Game over, print the winner
     winner = getWinner(players)
     print(f"The winner is: {winner.name} with {winner.score} points.")
