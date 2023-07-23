@@ -1,14 +1,17 @@
 [
     {"type": "cash", "value": 500, "text": "$500"},
-    {"type": "cash", "value": 1000, "text": "$1000"},
-    {"type": "bankrupt", "value": 0, "text": "Bankrupt"},
-    {"type": "lose_a_turn", "value": 0, "text": "Lose a Turn"},
-    {"type": "cash", "value": 200, "text": "$200"},
-    {"type": "cash", "value": 400, "text": "$400"},
-    {"type": "cash", "value": 700, "text": "$700"},
-    {"type": "cash", "value": 900, "text": "$900"},
-    {"type": "cash", "value": 300, "text": "$300"},
     {"type": "cash", "value": 600, "text": "$600"},
+    {"type": "cash", "value": 650, "text": "$650"},
+    {"type": "bankrupt", "value": 0, "text": "Bankrupt"},
+    {"type": "cash", "value": 700, "text": "$700"},
     {"type": "cash", "value": 800, "text": "$800"},
-    {"type": "cash", "value": 2500, "text": "$2500"}
+    {"type": "lose_a_turn", "value": 0, "text": "Lose a Turn"},
+    {"type": "cash", "value": 900, "text": "$900"},
+    {"type": "cash", "value": 1000, "text": "$1000"},
+    {"type": "free_play", "value": 0, "text": "Free Play"},
+    {"type": "cash", "value": 2500, "text": "$2500"},
+    {"type": "prize", "value": "6,799", "text": "Prize -- You won NVIDIA Tesla A100"},
+    {"type": "cash", "value": 3500, "text": "$3500"},
+    {"type": "cash", "value": 5000, "text": "$5000"},
+    {"type": "bankrupt", "value": 0, "text": "Bankrupt"}
 ]

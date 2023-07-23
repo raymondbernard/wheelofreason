@@ -170,14 +170,20 @@ def main():
                     guessed.add(guess)
                     updateGameHistory(player, "guess", "success", log_file)
                 else:
+                    print(f"Sorry, {guess} is not in the puzzle.")
                     updateGameHistory(player, "guess", "failure", log_file)
+                    playerIndex = (playerIndex + 1) % len(players)
+                    continue
         elif action == '2' and player.score >= VOWEL_COST:
             vowel = buyVowel(player)
             if vowel in phrase:
                 guessed.add(vowel)
                 updateGameHistory(player, "buy_vowel", "success", log_file)
             else:
+                print(f"Sorry, {vowel} is not in the puzzle.")
                 updateGameHistory(player, "buy_vowel", "failure", log_file)
+                playerIndex = (playerIndex + 1) % len(players)
+                continue
         elif action == '3':
             guess = input("Enter your solution: ")
             if guess.upper() == phrase.upper():
@@ -193,6 +199,7 @@ def main():
 
         # Switch to the next player
         playerIndex = (playerIndex + 1) % len(players)
+
 
     # Game over, print the winner
     winner = getWinner(players)
