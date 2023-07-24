@@ -1,0 +1,4 @@
+[{"category": "Place", "phrase": "TIMES SQUARE"}, {"player": "ChatGPTv4 1", "action": "spin", "result": "bankrupt", "score": 0}, {"player": "Google Bard 2", "action": "guess", "result": "failure", "score": 0}, {"player": "ChatGPTv4 1", "action": "guess", "result": "success", "score": 3500}, {"player": "ChatGPTv4 1", "action": "guess", "result": "success", "score": 7000}, {"player": "ChatGPTv4 1", "action": "buy_vowel", "result": "success", "score": 6750}, {"player": "ChatGPTv4 1", "action": "guess", "result": "success", "score": 8350}, {"player": "ChatGPTv4 1", "action": "buy_vowel", "result": "success", "score": 8100}, {"player": "ChatGPTv4 1", "action": "solve", "result": "success", "score": 8600}]
+Current scores:
+ChatGPTv4 1: 8600
+Google Bard 2: 0

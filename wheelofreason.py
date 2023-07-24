@@ -102,7 +102,7 @@ def writeScores(players, log_file):
 # Function to print game instructions
 def printHelp():
     print("""
-    Welcome to Wheel of Fortune! Here are the rules:
+    Welcome to Wheel of Reason! Here are the rules:
 
     - The game is played with a number of turns. On each turn, a player has three options:
         1) Spin the wheel: The wheel has a number of segments, offering various amounts of money, bankrupt, or lose a turn.
@@ -122,9 +122,9 @@ def printHelp():
 
 def main():
     # Define the players
-    players = [Player('ChatGPTv4 1'), Player('Google Bard 2'),  Player('Bing AI 2')]
+    players = [ Player('Llama v2 1'), Player('ChatGPTv4 2'), Player('Claude v2 3')]
 
-    print('Welcome to Wheel of Fortune!')
+    print('Welcome to Wheel of Reason!')
 
     # Select a random category and phrase
     category, phrase = getRandomCategoryAndPhrase()
