@@ -145,7 +145,6 @@ def printHelp():
 
     Now, let's get back to the game!
     """)
-
 def main():
     # Check if player names are provided in the command line arguments
     if len(sys.argv) < 2:
@@ -188,7 +187,6 @@ def main():
         print(f"It's {player.name}'s turn. You have {player.score} points.")
         print(obscurePhrase(phrase, guessed))
 
-        # flag to indicate if the current player should continue
         continue_current_player = False
 
         if player.score >= VOWEL_COST:
@@ -196,7 +194,10 @@ def main():
         else:
             action = input("What do you want to do? (1- Spin the wheel, 3- Solve the puzzle, 4- Help): ")
 
-        # Handle the player's action
+        if action == '4':
+            printHelp()
+            continue  # Skip the rest of this loop iteration, i.e., don't count this as a turn
+
         if action == '1':
             spin = spinWheel()
             print("You spun: ", spin['text'])
@@ -247,7 +248,7 @@ def main():
                 print(f"Sorry, {vowel} is not in the puzzle.")
                 updateGameHistory(player, "buy_vowel", "failure", log_file)
         elif action == '3':
-            guess = input("Enter your solution: ")
+            guess = input("Please enter your solution: ")
             if guess.upper() == phrase.upper():
                 print("Congratulations, you solved the puzzle!")
                 player.score += 500  # Bonus for solving the puzzle
@@ -256,13 +257,11 @@ def main():
             else:
                 print("Sorry, that's not correct.")
                 updateGameHistory(player, "solve", "failure", log_file)
-        elif action == '4':
-            printHelp()
 
         # Switch to the next player if the current player shouldn't continue
         if not continue_current_player:
             playerIndex = (playerIndex + 1) % len(players)
-    
+
     # Game over, print the winner and statistics
     winner = players[playerIndex]  # The winner is the player who solved the puzzle
     printWinnerAndStats(winner, players)
