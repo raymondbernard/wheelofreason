@@ -1,0 +1,7 @@
+[{"category": "Thing", "phrase": "PICTURE FRAME"}, {"player": "Bing,", "action": "solve", "result": "failure", "score": 150}, {"player": "ChatGPT,", "action": "spin", "result": "bankrupt", "score": 0}, {"player": "Claude,", "action": "solve", "result": "failure", "score": 0}, {"player": "ChatGPT,", "action": "solve", "result": "success", "score": 500}]
+Current scores:
+Bing,: 150
+ChatGPT,: 500
+Bard,: 200
+Claude,: 0
+LLaMa: 0
