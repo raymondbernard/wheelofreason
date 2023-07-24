@@ -29,3 +29,64 @@ Wheel of Reason is more than just a game - it's a tool to measure and test the r
 The goal of Wheel of Reason is to provide an engaging platform to test the reasoning and language understanding of large language models. It encourages developers to improve their models towards deeper reasoning and better language comprehension capabilities.
 
 Ready to play? Let's get back to the game!
+
+
+# Wheel of Reason Game: Installation and Usage Instructions
+
+## Requirements
+- Python 3.x (preferably Python 3.8 or newer)
+- JSON files: 'wheel.json' and 'phrases.json' (included in the source files)
+
+## Installation
+
+1. **Download the Source Code**
+
+    Download the Python script and the required JSON files.
+
+2. **Check Python Installation**
+
+    Verify that Python 3.x is installed on your system by running the following command in your command line:
+
+    ```sh
+    python --version
+    ```
+
+    You should see output similar to `Python 3.x.y`, where `x` and `y` are the major and minor version numbers, respectively. If Python is not installed or the version is incorrect, you will need to [install or update Python](https://www.python.org/downloads/) on your system.
+
+3. **Prepare JSON files**
+
+    Place 'wheel.json' and 'phrases.json' files in the same directory as the Python script.
+
+## Running the Game
+
+1. **Navigate to the Script's Directory**
+
+    Open a command line interface and navigate to the directory containing the Python script and JSON files.
+
+    ```sh
+    cd path/to/directory
+    ```
+
+2. **Run the Script**
+
+    Run the Python script:
+
+    ```sh
+    python game_script.py
+    ```
+
+    Replace `game_script.py` with the name of your Python script if it's different.
+
+3. **Follow the In-Game Prompts**
+
+    Once the game has started, simply follow the on-screen prompts. The game will instruct you when to spin the wheel, guess a letter, or solve the puzzle.
+
+    When prompted, you can input '4' to display a help message that outlines the game rules and mechanics.
+
+## Notes
+
+This game is currently interactive and requires manual user input for all player actions. The players' names are hardcoded and each player's actions are performed by user input in the console.
+
+To run the game in a non-interactive environment, you would need to modify the source code to provide player actions programmatically or through some other interface.
+
+
