@@ -129,11 +129,13 @@ def printHelp():
     Welcome to Wheel of Reason! Here are the rules:
 
     - The game is played with a number of turns. On each turn, a player has three options:
-        1) Spin the wheel: The wheel has a number of segments, offering various amounts of money, bankrupt, or lose a turn.
+        1) Spin the wheel: The wheel has a number of segments, offering various amounts of money, bankrupt, lose a turn, or a Freeplay.
         2) Buy a vowel: For a fixed cost of 250 points, you can guess a vowel that might be in the phrase.
         3) Solve the puzzle: If you think you know what the phrase is, you can try to solve. If you're correct, you win!
 
     - When you spin the wheel, if you land on a money amount, you can guess a consonant. If the consonant is in the phrase, you win the amount times the number of appearances of the consonant. If it's not in the phrase, your turn ends.
+
+    - If you land on a Freeplay: You can guess any letter, including vowels, without any cost. If the guessed letter is in the phrase, your turn continues. Even if it's not in the phrase, you still get to keep your turn.
 
     - If you have enough money, you can choose to buy a vowel instead of spinning the wheel. This costs a flat 250 points. If the vowel is in the phrase, you get to keep your turn. If it's not, your turn ends.
 
