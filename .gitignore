@@ -4,7 +4,7 @@
 *.pyd
 *.pyo
 *.pyz
-
+*.log 
 # C extensions
 *.so
 
