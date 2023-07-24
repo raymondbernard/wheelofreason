@@ -144,8 +144,6 @@ def printHelp():
     Now, let's get back to the game!
     """)
 
-    
-
 def main():
     # Check if player names are provided in the command line arguments
     if len(sys.argv) < 2:
@@ -205,6 +203,28 @@ def main():
                 updateGameHistory(player, "spin", "bankrupt", log_file)
             elif spin['type'] == 'lose_a_turn':
                 pass
+            elif spin['type'] == 'free_play':
+                free_play_guess = input("Free Play! Enter a guess (consonant or vowel) or try to solve the puzzle: ").upper()
+                if len(free_play_guess) > 1:  # Try to solve the puzzle
+                    if free_play_guess.upper() == phrase.upper():
+                        print("Congratulations, you solved the puzzle!")
+                        player.score += 500  # Bonus for solving the puzzle
+                        updateGameHistory(player, "solve", "success", log_file)
+                        break
+                    else:
+                        print("Sorry, that's not correct.")
+                        updateGameHistory(player, "solve", "failure", log_file)
+                elif free_play_guess in VOWELS or free_play_guess in CONSONANTS:  # Guess a letter
+                    if free_play_guess in phrase:
+                        player.score += (phrase.count(free_play_guess) * 500 if free_play_guess in CONSONANTS else 0)  # Only score for consonants
+                        guessed.add(free_play_guess)
+                        updateGameHistory(player, "guess", "success", log_file)
+                        continue_current_player = True
+                    else:
+                        print(f"Sorry, {free_play_guess} is not in the puzzle.")
+                        updateGameHistory(player, "guess", "failure", log_file)
+                else:
+                    print("Invalid guess. Please enter a letter or try to solve the puzzle.")
             else:
                 guess = getGuess()
                 if guess in phrase:
@@ -240,6 +260,7 @@ def main():
         # Switch to the next player if the current player shouldn't continue
         if not continue_current_player:
             playerIndex = (playerIndex + 1) % len(players)
+    
     # Game over, print the winner and statistics
     winner = players[playerIndex]  # The winner is the player who solved the puzzle
     printWinnerAndStats(winner, players)
