@@ -1,5 +1,0 @@
-[{"category": "Phrase", "phrase": "STEAL SOMEONE'S THUNDER"}, {"player": "Llama v2 1", "action": "guess", "result": "success", "score": 5000}, {"player": "Llama v2 1", "action": "buy_vowel", "result": "success", "score": 4750}, {"player": "Llama v2 1", "action": "guess", "result": "success", "score": 6550}, {"player": "Llama v2 1", "action": "solve", "result": "failure", "score": 6550}, {"player": "Claude v2 3", "action": "guess", "result": "success", "score": 1000}, {"player": "ChatGPTv4 2", "action": "guess", "result": "success", "score": 1600}, {"player": "ChatGPTv4 2", "action": "buy_vowel", "result": "success", "score": 1350}, {"player": "ChatGPTv4 2", "action": "guess", "result": "success", "score": 2000}, {"player": "ChatGPTv4 2", "action": "buy_vowel", "result": "success", "score": 1750}, {"player": "ChatGPTv4 2", "action": "guess", "result": "success", "score": 4250}, {"player": "ChatGPTv4 2", "action": "buy_vowel", "result": "success", "score": 4000}, {"player": "ChatGPTv4 2", "action": "solve", "result": "success", "score": 4500}]
-Current scores:
-Llama v2 1: 6550
-ChatGPTv4 2: 4500
-Claude v2 3: 1000

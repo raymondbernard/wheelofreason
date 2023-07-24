@@ -82,7 +82,37 @@ Ready to play? Let's get back to the game!
     Once the game has started, simply follow the on-screen prompts. The game will instruct you when to spin the wheel, guess a letter, or solve the puzzle.
 
     When prompted, you can input '4' to display a help message that outlines the game rules and mechanics.
+Sure, I can help you with that. Here is an example of how you can update the `Readme.md` file to reflect the changes you've mentioned:
 
+---
+
+In the most recent version of the game, we've added some new functionalities:
+
+1. **User Addition from Command Line**: Now you can add players directly from the command line. This makes it easier to get started with a new game.
+
+2. **Randomized Player Order**: We've added a bit more unpredictability to our game. Now, the order of players is randomized at the start of each game.
+
+3. **Puzzle-Solving Winner**: The game has been updated so that the winner is the player who solves the puzzle. This encourages strategic thinking and problem-solving.
+
+4. **Enhanced Logging**: Game statistics are now logged both to our log files and printed on the console. This allows for easier tracking of game progress and statistics.
+
+## Getting Started
+
+To add users from the command line, use the following command:
+
+```bash
+python wheelofreason.py --add-user <username>
+```
+
+Replace `<username>` with the name of the user you want to add.
+
+## Game Play
+
+At the start of the game, the order of players is randomized. Players take turns spinning the wheel, guessing letters, and attempting to solve the puzzle. The player who solves the puzzle is declared the winner.
+
+---
+
+Please replace any placeholder text (like `<username>`) with the actual commands or variables used in your code. Also, feel free to modify or extend this template to best fit your project and its requirements.
 ## Notes
 
 This game is currently interactive and requires manual user input for all player actions. The players' names are hardcoded and each player's actions are performed by user input in the console.
@@ -123,12 +153,8 @@ To run the game in a non-interactive environment, you would need to modify the s
 
     Instead of interacting with the game through a terminal or Jupyter notebook, a front-end interface could be developed to handle user inputs and display the game state. This could be a web-based interface developed using HTML/CSS/JavaScript, or a mobile app developed using a framework like React Native or Flutter.
 
-4. **Add Multiplayer Support**
-
-    The current version of the game is intended for single-player use with input from one user. In the future, multiplayer support could be added so that multiple players can interact with the game from different devices. This would involve creating unique sessions for each game and allowing players to join a session via a unique code or link.
 
 5. **Include a Database for Persistent Data**
 
     A database could be incorporated to store game state, player scores, and game history. This would allow players to resume games, view past scores, and track their performance over time. SQL or NoSQL databases such as MySQL, PostgreSQL, or MongoDB could be used for this purpose.
 
-Note: Each of these improvements would require significant changes to the codebase, and a basic understanding of the technologies involved is recommended. If you're not familiar with these, there are many resources available online to help you learn, including documentation, tutorials, and forums for asking questions.

@@ -3,13 +3,14 @@ import random
 import os
 from datetime import datetime
 import atexit
+import sys 
 
 # Load the wheel configuration from a JSON file
 with open('wheel.json', 'r') as f:
     WHEEL = json.load(f)
 
 # Load the categories and phrases from a JSON file
-with open('phrases.json', 'r') as f:
+with open('categories.json', 'r') as f:
     PHRASES = json.load(f)
 
 CATEGORIES = list(PHRASES.keys())  # Extract the categories from the phrases
@@ -59,6 +60,7 @@ def buyVowel(player):
         else:
             print("Invalid input. Please enter a vowel.")
 
+
 # Function to update game history and write to the log file
 def updateGameHistory(player, action, result, log_file):
     # Load existing history if it exists
@@ -81,6 +83,10 @@ def updateGameHistory(player, action, result, log_file):
         # Save the updated game history
         with open(log_file, 'w') as f:
             json.dump(history, f)
+
+        # Print running totals to console
+        print(f"\n{player.name}'s action: {action}, result: {result}, current score: {player.score}")
+
     except Exception as e:
         print(f"Error updating game history: {e}")
 
@@ -98,6 +104,24 @@ def writeScores(players, log_file):
                 f.write(f"{name}: {score}\n")
     except Exception as e:
         print(f"Error writing scores: {e}")
+
+# Function to print the winner and game statistics
+def printWinnerAndStats(winner, players):
+    print(f"\nThe winner is: {winner.name} with {winner.score} points.\n")
+    
+    print("Final Statistics:")
+    print(f"{'Player':<10}{'Score':<10}")
+    print("---------------------")
+    for player in players:
+        print(f"{player.name:<10}{player.score:<10}")
+    print("---------------------")
+
+def main():
+    # Remainder of the main function remains the same
+
+    # Game over, print the winner and statistics
+    winner = players[playerIndex]  # The winner is the player who solved the puzzle
+    printWinnerAndStats(winner, players)
 
 # Function to print game instructions
 def printHelp():
@@ -120,11 +144,26 @@ def printHelp():
     Now, let's get back to the game!
     """)
 
-def main():
-    # Define the players
-    players = [ Player('Llama v2 1'), Player('ChatGPTv4 2'), Player('Claude v2 3')]
+    
 
-    print('Welcome to Wheel of Reason!')
+def main():
+    # Check if player names are provided in the command line arguments
+    if len(sys.argv) < 2:
+        print("Error: Please provide player names.")
+        return
+
+    # Extract the player names from the command line arguments
+    player_names = sys.argv[1:]
+
+    # Define the players
+    players = [Player(name) for name in player_names]
+
+    # Welcome to the game
+    print('Welcome to the Wheel of Reason!')
+
+    # Welcome each player
+    for player in players:
+        print(f'Welcome, {player.name}!')
 
     # Select a random category and phrase
     category, phrase = getRandomCategoryAndPhrase()
@@ -201,9 +240,9 @@ def main():
         # Switch to the next player if the current player shouldn't continue
         if not continue_current_player:
             playerIndex = (playerIndex + 1) % len(players)
-    # Game over, print the winner
-    winner = getWinner(players)
-    print(f"The winner is: {winner.name} with {winner.score} points.")
+    # Game over, print the winner and statistics
+    winner = players[playerIndex]  # The winner is the player who solved the puzzle
+    printWinnerAndStats(winner, players)
 
 if __name__ == "__main__":
     main()

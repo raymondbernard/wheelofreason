@@ -10,7 +10,7 @@
     {"type": "points", "value": 1000, "text": "1000 points"},
     {"type": "free_play", "value": 0, "text": "Free Play"},
     {"type": "points", "value": 2500, "text": "2500 points"},
-    {"type": "prize", "value": "6,799", "text": "Prize -- You won NVIDIA Tesla A100"},
+    {"type": "prize", "value": "6799", "text": "Prize -- You won NVIDIA Tesla A100!"},
     {"type": "points", "value": 3500, "text": "3500 points"},
     {"type": "points", "value": 5000, "text": "5000 points"},
     {"type": "bankrupt", "value": 0, "text": "Bankrupt"}
