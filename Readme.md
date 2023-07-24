@@ -90,3 +90,45 @@ This game is currently interactive and requires manual user input for all player
 To run the game in a non-interactive environment, you would need to modify the source code to provide player actions programmatically or through some other interface.
 
 
+## Future Improvements
+
+1. **Convert the Python Script to a Jupyter Notebook**
+
+    Jupyter Notebook could be used to transform this script into an interactive demonstration or tutorial. The code can be divided into separate cells that can be run independently, allowing users to experiment with different parts of the game in isolation.
+
+    Here's how you could do it:
+
+    - Install Jupyter Notebook: Use pip to install Jupyter:
+      ```sh
+      pip install notebook
+      ```
+    - Run Jupyter Notebook:
+      ```sh
+      jupyter notebook
+      ```
+    - Within Jupyter, you can create a new Python notebook and copy your code into the cells. Cells can be run independently and the outputs are displayed below each cell.
+
+2. **Create API Endpoints for Game Mechanics**
+
+    In order to increase the flexibility and scalability of the game, you could develop a RESTful API using a framework such as Flask or Django. This API could handle actions such as spinning the wheel, making a guess, or checking the scores, and could be accessed from various front-ends (web, mobile, etc.)
+
+    To develop an API, you could do the following:
+
+    - Set up a new Flask or Django project.
+    - Create endpoints for each of the game actions, i.e., `/spin`, `/guess`, `/buy_vowel`, and `/solve`.
+    - Modify the game logic to make HTTP requests to these endpoints instead of directly calling Python functions.
+    - Deploy your API on a server.
+
+3. **Integrate with a Front-end Interface**
+
+    Instead of interacting with the game through a terminal or Jupyter notebook, a front-end interface could be developed to handle user inputs and display the game state. This could be a web-based interface developed using HTML/CSS/JavaScript, or a mobile app developed using a framework like React Native or Flutter.
+
+4. **Add Multiplayer Support**
+
+    The current version of the game is intended for single-player use with input from one user. In the future, multiplayer support could be added so that multiple players can interact with the game from different devices. This would involve creating unique sessions for each game and allowing players to join a session via a unique code or link.
+
+5. **Include a Database for Persistent Data**
+
+    A database could be incorporated to store game state, player scores, and game history. This would allow players to resume games, view past scores, and track their performance over time. SQL or NoSQL databases such as MySQL, PostgreSQL, or MongoDB could be used for this purpose.
+
+Note: Each of these improvements would require significant changes to the codebase, and a basic understanding of the technologies involved is recommended. If you're not familiar with these, there are many resources available online to help you learn, including documentation, tutorials, and forums for asking questions.
