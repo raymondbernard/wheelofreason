@@ -223,9 +223,9 @@ def main():
         continue_current_player = False
 
         if player.score >= VOWEL_COST:
-            action = input("What do you want to do? (1- Spin the wheel, 2- Buy a vowel, 3- Solve the puzzle, 4- Help, 5- Skip your turn): ")
+            action = input("What do you want to do? (1- Spin the wheel, 2- Buy a vowel, 3- Solve the puzzle, 4- Help, 5- Skip player): ")
         else:
-            action = input("What do you want to do? (1- Spin the wheel, 3- Solve the puzzle, 4- Help, 5- Skip your turn): ")
+            action = input("What do you want to do? (1- Spin the wheel, 3- Solve the puzzle, 4- Help, 5- Skip player): ")
 
         if action == '4':
             game.print_help()
