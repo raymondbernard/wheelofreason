@@ -108,11 +108,14 @@ class Game:
         guess = input("Guess a consonant: ").upper()
         while guess in player.guessed_letters or guess in VOWELS:
             guess = input("Invalid guess. Guess a consonant: ").upper()
+            if guess in player.guessed_letters or guess in VOWELS:
+                print("Invalid guess, you lose your turn.")
+                return None
         player.guessed_letters.add(guess)
         return guess
 
     def handle_guess(self, player, guess):
-        if guess in self.phrase:
+        if guess and guess in self.phrase:
             print("The consonant is in the phrase!")
             player.score += self.phrase.count(guess) * 100  # or some other scoring rule
             self.guessed.add(guess)
@@ -120,17 +123,18 @@ class Game:
         else:
             print("The consonant is not in the phrase.")
             return False
-
+        
     def buy_vowel(self, player):
         player.score -= VOWEL_COST
         vowel = input("Buy a vowel: ").upper()
-        while vowel not in VOWELS:
-            vowel = input("Invalid vowel. Buy a vowel: ").upper()
+        if vowel not in VOWELS:
+            print("Invalid vowel. You lost your turn.")
+            return None
         player.guessed_letters.add(vowel)
         return vowel
-
+    
     def handle_vowel_purchase(self, player, vowel):
-        if vowel in self.phrase:
+        if vowel and vowel in self.phrase:
             print("The vowel is in the phrase!")
             self.guessed.add(vowel)
             return True
