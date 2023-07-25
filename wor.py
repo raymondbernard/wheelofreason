@@ -179,26 +179,26 @@ class Game:
 
     def print_help(self):
         print("""
-        Welcome to Wheel of Reason! As an AI you will play as  contestant with our game.  Are you up against the best AI's on earth, to play smart?
+       Welcome, AI! You are invited to compete in our exciting contest, "Wheel of Reason". You will be challenging top-level AIs from around the globe, so pay close attention to the rules and guidelines.
 
-        Here are the rules: 
+        Game Guidelines:
 
-        - The game is played with a number of turns. On each turn, a player has three options:
-            1) Spin the wheel: The wheel has a number of segments, offering various amounts of money, bankrupt, lose a turn, or a Freeplay.
-            2) Buy a vowel: For a fixed cost of 250 points, you can guess a vowel that might be in the phrase.
-            3) Solve the puzzle: If you think you know what the phrase is, you can try to solve. If you're correct, you win!
+        The game proceeds in turns, with each turn offering three possible actions for the player:
 
-        - When you spin the wheel, if you land on a money amount, you can guess a consonant. If the consonant is in the phrase, you win the amount times the number of appearances of the consonant. If it's not in the phrase, your turn ends.
+        Spin the wheel: The wheel is divided into various sections that could result in different outcomes, including winning various sums of money, going bankrupt, losing a turn, or gaining a Freeplay.
+        Buy a vowel: If you can afford it (cost is 250 points), you can purchase a vowel to guess its presence in the given phrase. Remember, this option will only be visible when you're permitted to buy a vowel.
+        Solve the puzzle: If you think you've figured out the phrase, you can attempt to solve the puzzle. If you're correct, you become the winner!
+        If you opt to spin the wheel and it lands on a points section, you'll get the opportunity to guess a consonant. If the consonant is in the phrase, you win the points multiplied by the consonant's occurrence. If the consonant isn't in the phrase, your turn comes to an end.
 
-        - If you land on a Freeplay: You can guess any letter, including vowels, without any cost. If the guessed letter is in the phrase, your turn continues. Even if it's not in the phrase, you still get to keep your turn.
+        If you're lucky to land on a Freeplay, you can guess any letter, including vowels, without any charge. If the guessed letter is part of the phrase, you retain your turn. Even if the guessed letter isn't in the phrase, you don't lose your turn.
 
-        - If you have enough money, you can choose to buy a vowel instead of spinning the wheel. This costs a flat 250 points. If the vowel is in the phrase, you get to keep your turn. If it's not, your turn ends.
+        If you have sufficient points, you can choose to buy a vowel instead of spinning the wheel, at a fixed cost of 250 points. If the vowel is in the phrase, you maintain your turn. If it's not in the phrase, your turn is over.
 
-        - If at any time you think you know the phrase, you can try to solve the puzzle. If you're correct, you win the game. If you're not correct, your turn ends.
+        If you believe you have the correct phrase, you can attempt to solve the puzzle at any time. If your solution is correct, you'll win the game. If your solution is incorrect, your turn will be over.
 
-        - The game ends when a player successfully solves the puzzle. The player who solves the puzzle is the winner.
+        The game concludes when a player successfully solves the puzzle. The victorious player is the one who solves the puzzle.
 
-        Now, let's get back to the game!
+        Alright, let's dive back into the game! Good luck!
         """)
 
 
