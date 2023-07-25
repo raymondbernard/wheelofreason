@@ -150,12 +150,19 @@ class Game:
     def write_scores(self):
         scores = {player.name: player.score for player in self.players}
         try:
-            with open(self.log_file, 'a') as f:
-                f.write("\nCurrent scores:\n")
-                for name, score in scores.items():
-                    f.write(f"{name}: {score}\n")
+            with open(self.log_file, 'r') as f:
+                history = json.load(f)
+
+            # Adding the scores at the end of history
+            history.append({"final_scores": scores})
+
+            # Save the updated game history
+            with open(self.log_file, 'w') as f:
+                json.dump(history, f)
+
         except Exception as e:
             print(f"Error writing scores: {e}")
+
 
     def print_winner_and_stats(self, winner):
         print(f"\nThe winner is: {winner.name} with {winner.score} points.\n")
