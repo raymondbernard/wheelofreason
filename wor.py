@@ -235,14 +235,28 @@ def main():
         continue_current_player = False
 
         if player.score >= VOWEL_COST:
-            action = input("What do you want to do? (1- Spin the wheel, 2- Buy a vowel, 3- Solve the puzzle, 4- Help): ")
+            action = input("What do you want to do? (1- Spin the wheel, 2- Buy a vowel, 3- Solve the puzzle, 4- Help, 5- Skip turn): ")
         else:
-            action = input("What do you want to do? (1- Spin the wheel, 3- Solve the puzzle, 4- Help): ")
+            action = input("What do you want to do? (1- Spin the wheel, 3- Solve the puzzle, 4- Help, 5- Skip turn): ")
+
+        while action not in ['1', '2', '3', '4', '5'] or (action == '2' and player.score < VOWEL_COST):
+                print("Invalid option. Try again.")
+                if player.score >= VOWEL_COST:
+                    action = input("What do you want to do? (1- Spin the wheel, 2- Buy a vowel, 3- Solve the puzzle, 4- Help, 5- Skip turn): ")
+                else:
+                    action = input("What do you want to do? (1- Spin the wheel, 3- Solve the puzzle, 4- Help, 5- Skip turn): ")
+
 
         if action == '4':
             game.print_help()
             continue  # Skip the rest of this loop iteration, i.e., don't count this as a turn
+        # Skip turn if option 5 is selected
 
+        if action == '5':
+            print(f"{player.name} has decided to skip their turn.")
+            playerIndex = (playerIndex + 1) % len(game.players)
+
+            continue
         if action == '1':
             spin = game.spin_wheel()
             print("You spun: ", spin['text'])

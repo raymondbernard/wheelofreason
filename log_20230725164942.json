@@ -1,0 +1,1 @@
+[{"category": "Phrase", "phrase": "LAST BUT NOT LEAST"}, {"player": "Bing", "action": "spin", "result": "bankrupt", "score": 0}, {"player": "Bing", "action": "solve", "result": "failure", "score": 100}, {"player": "Bing", "action": "solve", "result": "success", "score": 550}, {"final_scores": {"Bing": 550, "ChatGPT": 150, "Bard": 200, "LLaMa": 0}}]
