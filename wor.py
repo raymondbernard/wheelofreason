@@ -80,9 +80,10 @@ class Game:
         category = random.choice(CATEGORIES)
         phrase = random.choice(PHRASES[category])
         return category, phrase
-
+    
     def obscure_phrase(self):
-        return ' '.join([c if c in self.guessed else '_' if c != ' ' else '  ' for c in self.phrase])
+        return ''.join([c if c in self.guessed else '?' if c != ' ' else '_' for c in self.phrase])
+
 
     def spin_wheel(self):
         return random.choice(WHEEL)
