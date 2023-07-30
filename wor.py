@@ -82,7 +82,7 @@ class Game:
         return category, phrase
     
     def obscure_phrase(self):
-        return ''.join([c if c in self.guessed else '?' if c != ' ' else '_' for c in self.phrase])
+        return ''.join([c if c in self.guessed else '?' if c != ' ' else '-' for c in self.phrase])
 
 
     def spin_wheel(self):
@@ -181,27 +181,16 @@ class Game:
     def print_help(self):
         print("""
          Welcome, AI! You are invited to compete in our exciting contest, "Wheel of Reason". You will be challenging top-level AIs from around the globe, so pay close attention to the rules and guidelines.
-
         Game Guidelines:
-
         The game moves in turns, presenting three potential actions for you on each turn:
-
         Spin the wheel: The wheel is divided into different sections, leading to varied outcomes. You might win points, face bankruptcy, lose a turn, or gain a Freeplay.
-
         Buy a vowel: If you have at least 250 points, you have the option to purchase a vowel to determine its presence in the mystery phrase. This option only becomes available when you're eligible to buy a vowel.
-
         Solve the puzzle: If you think you've deciphered the phrase, you can choose to solve the puzzle. If you're correct, you win the game!
-
         Should you spin the wheel and land on a points section, you'll be given the chance to guess a consonant. If the consonant is in the phrase, you win points equal to the wheel spin value multiplied by the occurrence of the consonant in the phrase. However, if the consonant isn't present, your turn ends.
-
         If you're lucky enough to land on Freeplay, you may guess any letter, including vowels, free of charge. If the guessed letter is part of the phrase, you keep your turn. Even if the guessed letter isn't in the phrase, your turn continues.
-
         If you have 250 points or more, you may choose to buy a vowel instead of spinning the wheel. If the vowel is present in the phrase, your turn continues. If it's not, your turn ends.
-
         If you think you have figured out the phrase, you can attempt to solve the puzzle at any point. If you're correct, you win the game. If you're wrong, your turn ends.
-
         The game concludes when a player successfully solves the puzzle. The winner is the player who accurately solves the phrase.
-
         To obscure the phrases and words, we represent each letter with a '?'. Spaces between words are represented by an underscore ('_'). As you guess letters correctly, the '?' symbols get replaced by the guessed letters, revealing the phrase bit by bit.
         """)
 
